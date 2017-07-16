@@ -26,6 +26,14 @@ public class MealsUtil {
         System.out.println(getFilteredWithExceededByCycle(meals, LocalTime.of(7, 0), LocalTime.of(12, 0), 2000));
     }
 
+    public static List<MealWithExceed> getMealsWithExceeded (){
+        return Arrays.asList(
+                createWithExceed(new Meal(LocalDateTime.of(2015, Month.MAY, 30, 10, 0), "Завтрак", 500), true),
+                createWithExceed(new Meal(LocalDateTime.of(2015, Month.MAY, 30, 13, 0), "Обед", 1000), false),
+                createWithExceed(new Meal(LocalDateTime.of(2015, Month.MAY, 31, 20, 0), "Ужин", 510), true)
+        );
+    }
+
     public static List<MealWithExceed> getFilteredWithExceeded(List<Meal> meals, LocalTime startTime, LocalTime endTime, int caloriesPerDay) {
         Map<LocalDate, Integer> caloriesSumByDate = meals.stream()
                 .collect(
